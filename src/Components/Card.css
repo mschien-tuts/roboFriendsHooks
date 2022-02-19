@@ -1,0 +1,28 @@
+.Card {
+    display: inline-block;
+    color: whitesmoke;
+    background-color: #2e4b3f;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+    border: black 1px;
+    border-radius: 20px;
+    max-width: 250px;
+    margin: 6px 3px 0 3px;
+    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Card img {
+    height: 200px;
+    width: 200px;
+}
+
+.Card:hover,
+.Card:focus {
+    transform: scale(1.05);
+}
+
+.Card:active {
+    transform: scale(.90);
+}

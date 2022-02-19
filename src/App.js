@@ -3,13 +3,15 @@ import React, {Component} from "react";
 import CardList from './Components/CardList.js'
 import SearchBox from './Components/SearchBox.js'
 import Scroll from './Components/Scroll';
+import ErrorBoundary from './Components/ErrorBoundary.js';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             robots: [],
-            searchField: ''
+            searchField: '',
+            date: new Date()
         }
     }
 
@@ -25,7 +27,7 @@ class App extends Component {
     }
 
     render() {
-        const {robots, searchField} = this.state;
+        const {robots, searchField, date} = this.state;
         const filterRobots = robots.filter(users => {
             return users.username.toLowerCase().includes(searchField.toLowerCase());
         })
@@ -38,9 +40,12 @@ class App extends Component {
             (
                 <div className="App">
                     <h1>ROBOFRIENDS</h1>
+                    <h2>It is: {date.toLocaleTimeString()}</h2>
                     <SearchBox searchChange={this.onSearchChange}/>
                     <Scroll>
-                        <CardList robots={filterRobots}/>
+                        <ErrorBoundary>
+                            <CardList robots={filterRobots}/>
+                        </ErrorBoundary>
                     </Scroll>
                 </div>
             )
